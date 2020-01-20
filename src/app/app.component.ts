@@ -1,10 +1,9 @@
-import {AfterContentChecked, AfterViewInit, Component, HostListener, OnInit} from '@angular/core';
-import {BrowserWidthService} from './display-width/browser-width.service';
+import { Component, OnInit} from '@angular/core';
 
-interface IConfig {
-  medium: number;
-  large: number;
-}
+import { BrowserWidthService } from './display-width/browser-width.service';
+import {Config} from './display-width/classes/config';
+
+
 
 
 
@@ -14,15 +13,10 @@ interface IConfig {
   styleUrls: ['./app.component.scss'],
 })
 
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
 
 
-  public inputParams: IConfig;
-  // @HostListener('window:resize', ['$event'])
-  // onResize(event) {
-  //   this.browserWidthService.setWidth(event.target.innerWidth);
-  // }
-
+  public inputParams: Config;
 
   constructor(
       private browserWidthService: BrowserWidthService
@@ -33,9 +27,5 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.inputParams = {medium: 900, large: 1200};
     this.browserWidthService.setInputParams(this.inputParams);
-  }
-
-  ngAfterViewInit(): void {
-
   }
 }
